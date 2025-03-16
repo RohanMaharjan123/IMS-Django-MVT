@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.http import HttpResponse
 
 # Create your views here.
 from .forms import ProductForm
@@ -18,7 +19,7 @@ def product_create_view(request):
         if form.is_valid():
             form.save()
             return redirect('product_list')
-        return render(request, 'ImsApp/product_form', {'form': form})
+    return render(request, "ImsApp/product_form.html", {"form": form})
 
 #Read View
 def product_list_view(request):
@@ -34,7 +35,7 @@ def product_update_view(request, product_id):
         if form.is_valid():
             form.save()
             return redirect('product_list')
-        return render(request, 'ImsApp/product_list.html', {'form': form})
+    return render(request, 'ImsApp/product_form.html', {'form': form })
 
 #Delete View
 def product_delete_view(request, product_id):
